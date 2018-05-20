@@ -7,13 +7,7 @@ const sortByOptions = {
   'Most Reviewed': 'review_count'
 };
 
-const getSortByClass = sortByOption => {
-  if (this.state.sortBy == sortByOption) {
-    return 'active';
-  } else {
-    return '';
-  }
-};
+
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -46,13 +40,21 @@ class SearchBar extends React.Component {
     });
   }
 
+  getSortByClass(sortByOption) {
+    if (this.state.sortBy == sortByOption) {
+      return 'active';
+    } else {
+      return '';
+    }
+  };
+
   renderSortByOptions() {
     return Object.keys(sortByOptions).map(sortByOption => {
       let sortByOptionValue = sortByOptions[sortByOption];
       return (
         <li
           key={sortByOptionValue}
-          className={getSortByClass(sortByOptionValue)}
+          className={this.getSortByClass(sortByOptionValue)}
           onClick={this.handleSortByChange.bind(this, sortByOptionValue)}
         >
           {sortByOption}
